@@ -15,3 +15,4 @@ data class ChampionResponseModel(
     @SerialName("version")
     val version: String? = ""
 )
+fun Map<String,ChampionModel>.toChampionList(): List<ChampionModel> = this.values.toList()
