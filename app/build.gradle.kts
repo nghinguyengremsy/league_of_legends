@@ -92,6 +92,7 @@ dependencies {
     implementation(libs.ktor.serialization.kotlinx.json)
     implementation(libs.sandwich.ktor)
     implementation(libs.ktor.client.okhttp)
+    implementation(libs.ktor.client.core)
 
 
     implementation(libs.androidx.material)

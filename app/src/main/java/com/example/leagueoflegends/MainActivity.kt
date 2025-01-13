@@ -29,17 +29,19 @@ class MainActivity : ComponentActivity() {
 //        enableEdgeToEdge()
         setContent {
 //            val viewModel = hiltViewModel<ChampionListViewModel>()
-
-//            LeagueOfLegendsTheme {
-//                Surface (modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background){
+            LeagueOfLegendsTheme {
+//                Surface(
+//                    modifier = Modifier.fillMaxSize(),
+//                    color = MaterialTheme.colorScheme.background
+//                ) {
 //                    Greeting("Android")
 //
 //                }
-                val viewModel = hiltViewModel<ChampionListViewModel>()
 
+                val viewModel = hiltViewModel<ChampionListViewModel>()
                 val state by viewModel.state.collectAsStateWithLifecycle()
                 ChampionListScreen(state = state, onValueChange = viewModel::onSearchTextChange)
-
+            }
         }
     }
 }
