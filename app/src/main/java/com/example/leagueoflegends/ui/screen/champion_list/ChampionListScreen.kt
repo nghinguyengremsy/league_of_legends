@@ -1,5 +1,6 @@
 package com.example.leagueoflegends.ui.screen.champion_list
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -22,7 +23,12 @@ import com.example.leagueoflegends.ui.screen.champion_list.composable.ChampionCa
 import com.example.leagueoflegends.ui.theme.LeagueOfLegendsTheme
 
 @Composable
-fun ChampionListScreen(state: ChampionListState,onValueChange: (String) -> Unit,modifier: Modifier = Modifier) {
+fun ChampionListScreen(
+    state: ChampionListState,
+    onValueChange: (String) -> Unit,
+    navigate: (String) -> Unit,
+    modifier: Modifier = Modifier
+) {
     Scaffold { innerPadding ->
         Column(
             modifier = Modifier
@@ -33,7 +39,7 @@ fun ChampionListScreen(state: ChampionListState,onValueChange: (String) -> Unit,
                 )
         ) {
             OutlinedTextField(
-                value =state.searchText,
+                value = state.searchText,
                 onValueChange = onValueChange,
                 placeholder = {
                     Text(text = "Search for champions")
@@ -46,9 +52,15 @@ fun ChampionListScreen(state: ChampionListState,onValueChange: (String) -> Unit,
                     .fillMaxWidth()
                     .padding(vertical = 20.dp)
             )
-            LazyColumn (verticalArrangement = Arrangement.spacedBy(16.dp)) {
-                items(state.filteredChampions) {
-                   champion-> ChampionCard(champion)
+            LazyColumn(verticalArrangement = Arrangement.spacedBy(16.dp)) {
+                items(state.filteredChampions) { champion ->
+                    ChampionCard(
+                        champion,
+                        modifier = Modifier
+                            .animateItem()
+                            .clickable {
+                                println(">>>> hihi")
+                                champion.name?.let(navigate) })
                 }
             }
         }

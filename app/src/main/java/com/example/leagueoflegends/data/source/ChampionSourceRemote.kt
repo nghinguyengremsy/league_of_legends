@@ -18,6 +18,6 @@ class ChampionSourceRemote(private val httpClient: HttpClient) : ChampionSource 
         httpClient.getApiResponse("champion.json")
 
     override suspend fun getChampionByName(name: String): ApiResponse<ChampionResponseModel> =
-        httpClient.getApiResponse<ChampionResponseModel>("$name.json")
+        httpClient.getApiResponse<ChampionResponseModel>("champion/$name.json")
 
 }

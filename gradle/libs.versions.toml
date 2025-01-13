@@ -16,6 +16,7 @@ hiltCompiler = "1.2.0"
 kspVersion = "2.0.21-1.0.25"
 coilCompose = "3.0.0-rc01"
 androidxLifecycle = "2.8.6"
+navigationCompose = "2.8.4"
 
 
 [libraries]
@@ -57,9 +58,9 @@ hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hilt"
 hilt-android-compiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "hilt" }
 hilt-compiler = { module = "com.google.dagger:hilt-compiler", version.ref = "hilt" }
 
-
-androidx-material = { group = "androidx.compose.material3", name = "material3" }
-
+# Navigation
+androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "navigationCompose" }
+androidx-navigation-ui-ktx = { module = "androidx.navigation:navigation-ui-ktx", version.ref = "navigationCompose" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

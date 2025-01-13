@@ -28,6 +28,7 @@ fun ChampionCard(
     modifier: Modifier = Modifier,
 ) {
     Row(
+        modifier = modifier,
         horizontalArrangement = Arrangement.spacedBy(10.dp)
     ) {
         AsyncImage(
