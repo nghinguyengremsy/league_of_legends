@@ -2,10 +2,12 @@ package com.example.leagueoflegends.ui.screen.champion_list
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.leagueoflegends.app.LoadingManager
 import com.example.leagueoflegends.domain.model.toChampionList
 import com.example.leagueoflegends.domain.repository.ChampionRepository
 import com.skydoves.sandwich.onSuccess
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
@@ -20,13 +22,17 @@ class ChampionListViewModel @Inject constructor(private val repo: ChampionReposi
         get() = _state.asStateFlow()
 
     init {
+
         viewModelScope.launch {
+            LoadingManager.currentInstance.show()
             repo.getAllChampions().onSuccess {
                 _state.update {
                     val champions = data.champion.toChampionList()
                     it.copy(champions = champions, filteredChampions = champions)
                 }
             }
+            LoadingManager.currentInstance.hide()
+
         }
     }
 

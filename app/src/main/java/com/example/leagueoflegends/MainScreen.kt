@@ -12,8 +12,8 @@ import com.example.leagueoflegends.ui.screen.champion_details.ChampionDetailsVie
 import com.example.leagueoflegends.ui.screen.champion_list.ChampionListScreen
 import com.example.leagueoflegends.ui.screen.champion_list.ChampionListViewModel
 import com.example.leagueoflegends.ui.theme.LeagueOfLegendsTheme
-import com.example.leagueoflegends.ui.util.ChampionDetails
-import com.example.leagueoflegends.ui.util.ChampionList
+import com.example.leagueoflegends.app.ChampionDetails
+import com.example.leagueoflegends.app.ChampionList
 
 @Composable
 fun MainScreen() {
@@ -39,7 +39,5 @@ fun MainScreen() {
                 }
             }
         }
-
-
     }
 }

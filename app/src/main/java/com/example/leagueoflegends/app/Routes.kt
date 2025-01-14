@@ -1,4 +1,4 @@
-package com.example.leagueoflegends.ui.util
+package com.example.leagueoflegends.app
 
 import kotlinx.serialization.Serializable
 
