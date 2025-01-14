@@ -11,7 +11,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 import androidx.navigation.toRoute
-import com.example.leagueoflegends.app.LoadingManager
+import com.example.leagueoflegends.app.OverlayManager
 import com.skydoves.sandwich.onSuccess
 import kotlinx.coroutines.delay
 
@@ -26,12 +26,11 @@ class ChampionDetailsViewModel @Inject constructor(
     init {
         val args = savedStateHandle.toRoute<ChampionDetails>()
         viewModelScope.launch {
-            LoadingManager.currentInstance.show()
+           val loader= OverlayManager.I.showLoading()
             repo.getChampionByName(args.name).onSuccess {
                 champion.value = data.champion.values.firstOrNull()
             }
-            LoadingManager.currentInstance.hide()
-
+            loader.dismiss()
         }
     }
 }

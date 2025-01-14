@@ -2,7 +2,7 @@ package com.example.leagueoflegends.ui.screen.champion_list
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.leagueoflegends.app.LoadingManager
+import com.example.leagueoflegends.app.OverlayManager
 import com.example.leagueoflegends.domain.model.toChampionList
 import com.example.leagueoflegends.domain.repository.ChampionRepository
 import com.skydoves.sandwich.onSuccess
@@ -24,14 +24,14 @@ class ChampionListViewModel @Inject constructor(private val repo: ChampionReposi
     init {
 
         viewModelScope.launch {
-            LoadingManager.currentInstance.show()
+            val loader= OverlayManager.I.showLoading()
             repo.getAllChampions().onSuccess {
                 _state.update {
                     val champions = data.champion.toChampionList()
                     it.copy(champions = champions, filteredChampions = champions)
                 }
             }
-            LoadingManager.currentInstance.hide()
+            loader.dismiss()
 
         }
     }
