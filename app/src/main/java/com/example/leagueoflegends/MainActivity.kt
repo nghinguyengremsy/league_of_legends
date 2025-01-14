@@ -35,49 +35,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-//            val viewModel = hiltViewModel<ChampionListViewModel>()
-            LeagueOfLegendsTheme {
-
-                val navController = rememberNavController()
-
-                NavHost(
-                    navController = navController, startDestination = ChampionList
-                ) {
-                    composable<ChampionList> {
-                        val viewModel = hiltViewModel<ChampionListViewModel>()
-                        val state by viewModel.state.collectAsStateWithLifecycle()
-                        ChampionListScreen(
-                            state = state,
-                            onValueChange = viewModel::onSearchTextChange,
-                            navigate = {name -> navController.navigate(ChampionDetails(name))}
-                        )
-                    }
-                    composable<ChampionDetails> {
-                        val viewModel = hiltViewModel<ChampionDetailsViewModel>()
-                        viewModel.champion.value?.let {
-                            ChampionDetailsScreen(it)
-                        }
-                    }
-                }
-
-
-            }
+            MainScreen()
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    LeagueOfLegendsTheme {
-        Greeting("Android")
     }
 }

@@ -59,7 +59,6 @@ fun ChampionListScreen(
                         modifier = Modifier
                             .animateItem()
                             .clickable {
-                                println(">>>> hihi")
                                 champion.name?.let(navigate) })
                 }
             }
