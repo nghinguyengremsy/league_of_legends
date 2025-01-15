@@ -1,5 +1,6 @@
 package com.example.leagueoflegends.app
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.size
@@ -94,8 +95,8 @@ object OverlayManagerImpl : OverlayManager {
                     if (content != null) {
                         content.invoke()
                     } else {
-                        Dialog(
-                            onDismissRequest = {}
+                        CustomLoadingPopup(
+//                            onDismissRequest = {}
                         ) {
                             Box(
                                 modifier = Modifier
@@ -119,6 +120,18 @@ object OverlayManagerImpl : OverlayManager {
 
     }
 
+    @Composable
+    private fun CustomLoadingPopup(content: @Composable () -> Unit) {
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(Color.Black.copy(alpha = 0.5f)),
+            contentAlignment = Alignment.Center
+        ) {
+            content.invoke()
+        }
+    }
+
     private fun addOverlayRequester(overlayId: String, requesterId: String) {
         val requester = hashRequester[overlayId];
         if (requester.isNullOrEmpty()) {
@@ -131,7 +144,7 @@ object OverlayManagerImpl : OverlayManager {
 
     private fun removeOverlayRequester(overlayId: String, requesterId: String) {
         CoroutineScope(Dispatchers.Main).launch {
-            delay(300)
+            delay(3000)
             val requester = hashRequester[overlayId];
             requester?.remove(requesterId);
             if (requester.isNullOrEmpty()) {
@@ -187,6 +200,7 @@ class Overlay {
         _currentState.value = OverlayState(entries.map { it -> it.entry }.toList())
     }
 }
+
 data class OverlayState(val entries: List<OverlayEntry>)
 
 // Overlay entry
