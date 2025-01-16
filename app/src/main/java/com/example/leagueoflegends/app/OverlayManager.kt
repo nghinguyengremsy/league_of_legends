@@ -11,6 +11,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import kotlinx.coroutines.CoroutineScope
@@ -125,7 +126,8 @@ object OverlayManagerImpl : OverlayManager {
         Box(
             modifier = Modifier
                 .fillMaxSize()
-                .background(Color.Black.copy(alpha = 0.5f)),
+                .background(Color.Black.copy(alpha = 0.5f))
+                .pointerInput(Unit) {}, // Block touch events below,
             contentAlignment = Alignment.Center
         ) {
             content.invoke()
